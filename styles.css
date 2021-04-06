@@ -9,19 +9,12 @@ red - #ee5253
 */
 * {
   font-family: 'Roboto', sans-serif;
+  border: 1px solid black;
 }
 
 body {
   background-image: url('./assets/burger-friends.jpg');
-  object-fit: cover;
-}
-
-main {
-
-}
-
-h3 {
-
+  margin: 0;
 }
 
 nav {
@@ -31,29 +24,40 @@ nav {
 main {
   display: flex;
   flex-direction: row;
-  align-items: : center;
-  margin: 50px;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 30px;
+  height: 400px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+
 }
 
 form {
-  background-color: rgba(225, 225, 225, .9);
-  margin: auto;
-  border-style: solid;
-  width: 300px;
-  height: 100px;
-  position: relative;
+  display: inline-flex;
+  flex-direction: column;
 }
 
-form, #results {
+.formtitle {
+  margin: 0px;
   display: block;
+  text
+}
+
+#results, .container {
   background-color: rgba(225, 225, 225, .9);
-  border-style: solid;
-  margin: auto;
   width: 500px;
-  height: 400px;
-  box-sizing: border-box;
-  position: relative;
-  text-align: center;
+}
+
+#results {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 img {
