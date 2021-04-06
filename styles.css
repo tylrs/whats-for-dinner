@@ -11,22 +11,57 @@ red - #ee5253
   font-family: 'Roboto', sans-serif;
 }
 
-main {
+body {
   background-image: url('./assets/burger-friends.jpg');
+  object-fit: cover;
+}
+
+main {
+
+}
+
+h3 {
+
 }
 
 nav {
   background-color: #0fb9b1;
 }
 
-form {
-  background-color: rgba(225, 225, 225, .9);
+main {
+  display: flex;
+  flex-direction: row;
+  align-items: : center;
+  margin: 50px;
 }
 
-#results {
+form {
   background-color: rgba(225, 225, 225, .9);
-  margin: 100px;
+  margin: auto;
+  border-style: solid;
+  width: 300px;
+  height: 100px;
+  position: relative;
 }
+
+form, #results {
+  display: block;
+  background-color: rgba(225, 225, 225, .9);
+  border-style: solid;
+  margin: auto;
+  width: 500px;
+  height: 400px;
+  box-sizing: border-box;
+  position: relative;
+  text-align: center;
+}
+
+img {
+  margin: auto;
+  max-width: 100%;
+  height: 170px;
+}
+
 sup {
   color: #ee5253
 }
