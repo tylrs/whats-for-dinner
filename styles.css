@@ -101,6 +101,10 @@ sup {
   text-align: center;
 }
 
+#seen-before {
+  text-align: center;
+}
+
 #dish-name {
   font-size: 200%;
   font-weight: bolder;
