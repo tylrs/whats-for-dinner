@@ -1,13 +1,16 @@
 /*Grab DOM Elements*/
 var foodTypeButton = document.querySelector('#food-type-button');
-var cookPot = document.querySelector('section image');
+var cookPot = document.querySelector('#cook-pot');
 var form = document.querySelector('form');
 var radioButton = document.querySelectorAll('input[name="food"]');
+var dishNameSection = document.querySelector('#dish-name-section');
+var dishName = document.querySelector('#dish-name');
 console.log(radioButton[0].checked);
-
+console.log(cookPot);
+console.log("Help>", dishName.innerText);
 
 /*Add event listeners*/
-form.addEventListener('submit', generateRandomDish);
+form.addEventListener('submit', showRandomDish);
 //when button is clicked, iterate through data until you find button that
 //has been checked
 
@@ -21,6 +24,8 @@ form.addEventListener('submit', generateRandomDish);
 //and so on for each array
 //then return interpolated string with random food chosen
 
+/*Global Variables*/
+var randomDish;
 
 
 /*Add event handlers*/
@@ -33,20 +38,25 @@ function chooseArray() {
 }
 
 function showRandomDish() {
-  // generateRandomDish();
-  // displayRandomDish();
+  event.preventDefault();
+  generateRandomDish();
+  console.log(randomDish);
+  console.log(typeof randomDish);
+  cookPot.classList.add('hidden');
+  dishNameSection.classList.remove('hidden');
+  dishName.innerText += randomDish;
   //1)hide cookpot by adding a .hidden
   //2)display the results by: removing hidden class from a
     //<p> element which says "you should make:"
   //3)adding inner HTML to the results section which is a <p> which includes
-    //the inner text of the random dish   
+    //the inner text of the random dish
 }
 
 function generateRandomDish() {
   var mealType = chooseArray();
   if (mealType === "sides") {
     randomDish = sides[getRandomIndex(sides)];
-    console.log(randomDish);
+    return randomDish
   } else if (mealType === "mainDishes") {
     randomDish = mainDishes[getRandomIndex(mainDishes)];
     console.log(randomDish);
@@ -56,11 +66,7 @@ function generateRandomDish() {
   } else {
     console.log("Hello");
   }
-  event.preventDefault();
 }
-
-/*Global Variables*/
-var randomDish;
 
 /*Other Functions*/
 function getRandomIndex(array) {
@@ -98,22 +104,22 @@ var mainDishes = [
 ];
 
 var desserts = [
-"Apple Pie",
-"Lemon Meringue Pie",
-"Black Forest Cake",
-"Banana Bread",
-"Peach Cobbler",
-"Cheesecake",
-"Funfetti Cake",
-"Baklava",
-"Flan",
-"Macarons",
-"Macaroons",
-"Chocolate Cupcakes",
-"Pavlova",
-"Pumpkin Pie",
-"Key Lime Pie",
-"Tart Tatin",
-"Croissants",
-"Eclairs",
+  "Apple Pie",
+  "Lemon Meringue Pie",
+  "Black Forest Cake",
+  "Banana Bread",
+  "Peach Cobbler",
+  "Cheesecake",
+  "Funfetti Cake",
+  "Baklava",
+  "Flan",
+  "Macarons",
+  "Macaroons",
+  "Chocolate Cupcakes",
+  "Pavlova",
+  "Pumpkin Pie",
+  "Key Lime Pie",
+  "Tart Tatin",
+  "Croissants",
+  "Eclairs",
 ];
