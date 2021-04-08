@@ -92,3 +92,7 @@ sup {
   padding-bottom: 7px;
   border-radius: 3px / 5px;
 }
+
+.hidden {
+  display: none;
+}
