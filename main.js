@@ -5,6 +5,7 @@ var form = document.querySelector('form');
 var radioButton = document.querySelectorAll('input[name="food"]');
 var dishNameSection = document.querySelector('#dish-name-section');
 var dishName = document.querySelector('#dish-name');
+var seenBeforeMessage = document.querySelector('#seen-before');
 
 
 /*Add event listeners*/
@@ -12,30 +13,58 @@ form.addEventListener('submit', showRandomDish);
 
 
 /*Global Variables*/
-var randomDish;
-var previouslyGeneratedDishes = [];
+var currentDish;
+var oldDishes = [];
+var newDish;
 
 
 /*Add event handlers*/
 function showRandomDish() {
   event.preventDefault();
+  console.log(sides.length);
   generateRandomDish();
+  console.log(currentDish);
   cookPot.classList.add('hidden');
   dishNameSection.classList.remove('hidden');
-  dishName.innerText = `${randomDish}!`;
+  dishName.innerText = `${currentDish}!`;
 }
 
 function generateRandomDish() {
   var mealType = chooseArray();
-  if (mealType === "sides") {
-    newDish = sides[getRandomIndex(sides)];
+  if (mealType === "sides" && sides.length > 0) {
+    newDish = sides.splice([getRandomIndex(sides)], 1);
+    // console.log(newDish);
+    if (oldDishes.includes(newDish)) {
+      generateRandomDish();
+    } else {
+      currentDish = newDish;
+      oldDishes.push(newDish);
+    }
+  } else if (mealType === "sides" && !sides.length) {
+    seenBeforeMessage.classList.remove('hidden');
+    var originalLength = oldDishes.length;
+    // console.log(originalLength);
+    for (var i = 0; i < originalLength; i ++) {
+      var resetDish = oldDishes.pop();
+      console.log(resetDish);
+      sides.push(resetDish);
+    } console.log(sides);
   } else if (mealType === "mainDishes") {
-    randomDish = mainDishes[getRandomIndex(mainDishes)]
+    newDish = mainDishes[getRandomIndex(mainDishes)];
   } else if (mealType === "desserts") {
-    randomDish = desserts[getRandomIndex(desserts)];
-  } else {
+    newDish = desserts[getRandomIndex(desserts)];
   }
 }
+
+// function onlyChooseNewDish() {
+//   if (oldDishes.includes(newDish)) {
+//     showRandomDish();
+//   } else {
+//     oldDishes.push(newDish);
+//     currentDish = newDish;
+//     return;
+//   }
+// }
 
 function chooseArray() {
   for (var i = 0; i < radioButton.length; i++) {
