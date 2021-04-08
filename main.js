@@ -1,52 +1,34 @@
 /*Grab DOM Elements*/
 var foodTypeButton = document.querySelector('#food-type-button');
-var cookPot = document.querySelector('section image');
+var cookPot = document.querySelector('#cook-pot');
 var form = document.querySelector('form');
 var radioButton = document.querySelectorAll('input[name="food"]');
-console.log(radioButton[0].checked);
+var dishNameSection = document.querySelector('#dish-name-section');
+var dishName = document.querySelector('#dish-name');
 
 
 /*Add event listeners*/
-form.addEventListener('submit', generateRandomDish);
-//when button is clicked, iterate through data until you find button that
-//has been checked
+form.addEventListener('submit', showRandomDish);
 
-//retrieve that string value from that array index
-//I have the name of the array I want to iterate through randomly
-//I could put all of the food in an object, then it would be easy to use
-//that string to select the array I want to iterate through
 
-//you could also check the value of the string save it as a variable and
-//if string === sides, then iterate through this array
-//and so on for each array
-//then return interpolated string with random food chosen
-
+/*Global Variables*/
+var randomDish;
 
 
 /*Add event handlers*/
-function chooseArray() {
-  for (var i = 0; i < radioButton.length; i++) {
-    if (radioButton[i].checked) {
-      return radioButton[i].value;
-    }
-  }
-}
-
 function showRandomDish() {
-  // generateRandomDish();
-  // displayRandomDish();
-  //1)hide cookpot by adding a .hidden
-  //2)display the results by: removing hidden class from a
-    //<p> element which says "you should make:"
-  //3)adding inner HTML to the results section which is a <p> which includes
-    //the inner text of the random dish   
+  event.preventDefault();
+  generateRandomDish();
+  cookPot.classList.add('hidden');
+  dishNameSection.classList.remove('hidden');
+  dishName.innerText = `${randomDish}!`;
 }
 
 function generateRandomDish() {
   var mealType = chooseArray();
   if (mealType === "sides") {
     randomDish = sides[getRandomIndex(sides)];
-    console.log(randomDish);
+    return randomDish
   } else if (mealType === "mainDishes") {
     randomDish = mainDishes[getRandomIndex(mainDishes)];
     console.log(randomDish);
@@ -56,11 +38,15 @@ function generateRandomDish() {
   } else {
     console.log("Hello");
   }
-  event.preventDefault();
 }
 
-/*Global Variables*/
-var randomDish;
+function chooseArray() {
+  for (var i = 0; i < radioButton.length; i++) {
+    if (radioButton[i].checked) {
+      return radioButton[i].value;
+    }
+  }
+}
 
 /*Other Functions*/
 function getRandomIndex(array) {
@@ -98,22 +84,22 @@ var mainDishes = [
 ];
 
 var desserts = [
-"Apple Pie",
-"Lemon Meringue Pie",
-"Black Forest Cake",
-"Banana Bread",
-"Peach Cobbler",
-"Cheesecake",
-"Funfetti Cake",
-"Baklava",
-"Flan",
-"Macarons",
-"Macaroons",
-"Chocolate Cupcakes",
-"Pavlova",
-"Pumpkin Pie",
-"Key Lime Pie",
-"Tart Tatin",
-"Croissants",
-"Eclairs",
+  "Apple Pie",
+  "Lemon Meringue Pie",
+  "Black Forest Cake",
+  "Banana Bread",
+  "Peach Cobbler",
+  "Cheesecake",
+  "Funfetti Cake",
+  "Baklava",
+  "Flan",
+  "Macarons",
+  "Macaroons",
+  "Chocolate Cupcakes",
+  "Pavlova",
+  "Pumpkin Pie",
+  "Key Lime Pie",
+  "Tart Tatin",
+  "Croissants",
+  "Eclairs",
 ];
