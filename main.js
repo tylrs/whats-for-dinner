@@ -13,6 +13,7 @@ form.addEventListener('submit', showRandomDish);
 
 /*Global Variables*/
 var randomDish;
+var previouslyGeneratedDishes = [];
 
 
 /*Add event handlers*/
@@ -27,16 +28,12 @@ function showRandomDish() {
 function generateRandomDish() {
   var mealType = chooseArray();
   if (mealType === "sides") {
-    randomDish = sides[getRandomIndex(sides)];
-    return randomDish
+    newDish = sides[getRandomIndex(sides)];
   } else if (mealType === "mainDishes") {
-    randomDish = mainDishes[getRandomIndex(mainDishes)];
-    console.log(randomDish);
+    randomDish = mainDishes[getRandomIndex(mainDishes)]
   } else if (mealType === "desserts") {
     randomDish = desserts[getRandomIndex(desserts)];
-    console.log(randomDish);
   } else {
-    console.log("Hello");
   }
 }
 
