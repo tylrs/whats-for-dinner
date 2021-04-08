@@ -35,7 +35,11 @@ function chooseArray() {
 function showRandomDish() {
   // generateRandomDish();
   // displayRandomDish();
-  
+  //1)hide cookpot by adding a .hidden
+  //2)display the results by: removing hidden class from a
+    //<p> element which says "you should make:"
+  //3)adding inner HTML to the results section which is a <p> which includes
+    //the inner text of the random dish   
 }
 
 function generateRandomDish() {
