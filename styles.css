@@ -96,3 +96,17 @@ sup {
 .hidden {
   display: none;
 }
+
+#you-should {
+  text-align: center;
+}
+
+#dish-name {
+  font-size: 200%;
+  font-weight: bolder;
+}
+
+#dish-name-section > p {
+  margin-block-start: 0%;
+  margin-block-end: 0%;
+}
