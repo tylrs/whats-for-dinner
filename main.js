@@ -14,7 +14,9 @@ form.addEventListener('submit', showRandomDish);
 
 /*Global Variables*/
 var currentDish;
-var oldDishes = [];
+var oldSides = [];
+var oldMainDishes = [];
+var oldDesserts = [];
 var newDish;
 
 
@@ -33,38 +35,51 @@ function generateRandomDish() {
   var mealType = chooseArray();
   if (mealType === "sides" && sides.length > 0) {
     newDish = sides.splice([getRandomIndex(sides)], 1);
-    // console.log(newDish);
-    if (oldDishes.includes(newDish)) {
+    if (oldSides.includes(newDish)) {
       generateRandomDish();
     } else {
       currentDish = newDish;
-      oldDishes.push(newDish);
+      oldSides.push(newDish);
     }
   } else if (mealType === "sides" && !sides.length) {
     seenBeforeMessage.classList.remove('hidden');
-    var originalLength = oldDishes.length;
-    // console.log(originalLength);
+    var originalLength = oldSides.length;
     for (var i = 0; i < originalLength; i ++) {
-      var resetDish = oldDishes.pop();
-      console.log(resetDish);
+      var resetDish = oldSides.pop();
       sides.push(resetDish);
-    } console.log(sides);
-  } else if (mealType === "mainDishes") {
-    newDish = mainDishes[getRandomIndex(mainDishes)];
-  } else if (mealType === "desserts") {
-    newDish = desserts[getRandomIndex(desserts)];
+    }
+  } else if (mealType === "mainDishes" && mainDishes.length > 0) {
+    newDish = mainDishes.splice([getRandomIndex(mainDishes)], 1);
+    if (oldMainDishes.includes(newDish)) {
+      generateRandomDish();
+    } else {
+      currentDish = newDish;
+      oldMainDishes.push(newDish);
+    }
+  } else if (mealType === "mainDishes" && !mainDishes.length) {
+    seenBeforeMessage.classList.remove('hidden');
+    var originalLength = oldMainDishes.length;
+    for (var i = 0; i < originalLength; i ++) {
+      var resetDish = oldMainDishes.pop();
+      mainDishes.push(resetDish);
+    }
+  } else if (mealType === "desserts" && desserts.length > 0) {
+    newDish = desserts.splice([getRandomIndex(desserts)], 1);
+    if (oldDesserts.includes(newDish)) {
+      generateRandomDish();
+    } else {
+      currentDish = newDish;
+      oldDesserts.push(newDish);
+    }
+  } else if (mealType === "desserts" && !desserts.length) {
+    seenBeforeMessage.classList.remove('hidden');
+    var originalLength = oldDesserts.length;
+    for (var i = 0; i < originalLength; i ++) {
+      var resetDish = oldDesserts.pop();
+      desserts.push(resetDish);
+    }
   }
 }
-
-// function onlyChooseNewDish() {
-//   if (oldDishes.includes(newDish)) {
-//     showRandomDish();
-//   } else {
-//     oldDishes.push(newDish);
-//     currentDish = newDish;
-//     return;
-//   }
-// }
 
 function chooseArray() {
   for (var i = 0; i < radioButton.length; i++) {
