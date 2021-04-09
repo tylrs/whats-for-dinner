@@ -5,6 +5,7 @@ var form = document.querySelector('form');
 var radioButton = document.querySelectorAll('input[name="food"]');
 var dishNameSection = document.querySelector('#dish-name-section');
 var dishName = document.querySelector('#dish-name');
+var seenBeforeMessage = document.querySelector('#seen-before');
 
 
 /*Add event listeners*/
@@ -12,31 +13,71 @@ form.addEventListener('submit', showRandomDish);
 
 
 /*Global Variables*/
-var randomDish;
+var currentDish;
+var oldSides = [];
+var oldMainDishes = [];
+var oldDesserts = [];
+var newDish;
 
 
 /*Add event handlers*/
 function showRandomDish() {
   event.preventDefault();
+  console.log(sides.length);
   generateRandomDish();
+  console.log(currentDish);
   cookPot.classList.add('hidden');
   dishNameSection.classList.remove('hidden');
-  dishName.innerText = `${randomDish}!`;
+  dishName.innerText = `${currentDish}!`;
 }
 
 function generateRandomDish() {
   var mealType = chooseArray();
-  if (mealType === "sides") {
-    randomDish = sides[getRandomIndex(sides)];
-    return randomDish
-  } else if (mealType === "mainDishes") {
-    randomDish = mainDishes[getRandomIndex(mainDishes)];
-    console.log(randomDish);
-  } else if (mealType === "desserts") {
-    randomDish = desserts[getRandomIndex(desserts)];
-    console.log(randomDish);
-  } else {
-    console.log("Hello");
+  if (mealType === "sides" && sides.length > 0) {
+    newDish = sides.splice([getRandomIndex(sides)], 1);
+    if (oldSides.includes(newDish)) {
+      generateRandomDish();
+    } else {
+      currentDish = newDish;
+      oldSides.push(newDish);
+    }
+  } else if (mealType === "sides" && !sides.length) {
+    seenBeforeMessage.classList.remove('hidden');
+    var originalLength = oldSides.length;
+    for (var i = 0; i < originalLength; i ++) {
+      var resetDish = oldSides.pop();
+      sides.push(resetDish);
+    }
+  } else if (mealType === "mainDishes" && mainDishes.length > 0) {
+    newDish = mainDishes.splice([getRandomIndex(mainDishes)], 1);
+    if (oldMainDishes.includes(newDish)) {
+      generateRandomDish();
+    } else {
+      currentDish = newDish;
+      oldMainDishes.push(newDish);
+    }
+  } else if (mealType === "mainDishes" && !mainDishes.length) {
+    seenBeforeMessage.classList.remove('hidden');
+    var originalLength = oldMainDishes.length;
+    for (var i = 0; i < originalLength; i ++) {
+      var resetDish = oldMainDishes.pop();
+      mainDishes.push(resetDish);
+    }
+  } else if (mealType === "desserts" && desserts.length > 0) {
+    newDish = desserts.splice([getRandomIndex(desserts)], 1);
+    if (oldDesserts.includes(newDish)) {
+      generateRandomDish();
+    } else {
+      currentDish = newDish;
+      oldDesserts.push(newDish);
+    }
+  } else if (mealType === "desserts" && !desserts.length) {
+    seenBeforeMessage.classList.remove('hidden');
+    var originalLength = oldDesserts.length;
+    for (var i = 0; i < originalLength; i ++) {
+      var resetDish = oldDesserts.pop();
+      desserts.push(resetDish);
+    }
   }
 }
 
