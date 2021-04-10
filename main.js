@@ -13,7 +13,6 @@ form.addEventListener('submit', showRandomDish);
 
 
 /*Global Variables*/
-var newDish;
 var currentDish;
 var sidesShown = [];
 var mainDishesShown = [];
@@ -30,17 +29,15 @@ function showRandomDish() {
   dishName.innerText = `${currentDish}!`;
 }
 
-
-
 function generateRandomDish() {
   var recipeTypeName = chooseArray();
   var recipeType = window[recipeTypeName];
   var recipeTypeShown = window[`${recipeTypeName}Shown`];
+
   if (recipeType.length > 0) {
-    newDish = recipeType.splice([getRandomIndex(recipeType)], 1);
+    currentDish = recipeType.splice([getRandomIndex(recipeType)], 1);
     seenBeforeMessage.classList.add('hidden');
-    currentDish = newDish;
-    recipeTypeShown.push(newDish);
+    recipeTypeShown.push(currentDish);
   } else if (!recipeType.length) {
     seenBeforeMessage.classList.remove('hidden');
     var originalLength = recipeTypeShown.length;
@@ -49,7 +46,6 @@ function generateRandomDish() {
     };
   };
 }
-
 
 function chooseArray() {
   for (var i = 0; i < radioButton.length; i++) {
