@@ -23,14 +23,18 @@ var dessertsShown = [];
 function showRandomDish() {
   event.preventDefault();
   generateRandomDish();
-  console.log(currentDish);
   cookPot.classList.add('hidden');
   dishNameSection.classList.remove('hidden');
   dishName.innerText = `${currentDish}!`;
 }
 
+/*Other Functions*/
+function getRandomIndex(array) {
+  return Math.floor(Math.random() * array.length);
+};
+
 function generateRandomDish() {
-  var recipeTypeName = chooseArray();
+  var recipeTypeName = getValueFromButton();
   var recipeType = window[recipeTypeName];
   var recipeTypeShown = window[`${recipeTypeName}Shown`];
 
@@ -47,18 +51,13 @@ function generateRandomDish() {
   };
 }
 
-function chooseArray() {
+function getValueFromButton() {
   for (var i = 0; i < radioButton.length; i++) {
     if (radioButton[i].checked) {
       return radioButton[i].value;
     }
   }
 }
-
-/*Other Functions*/
-function getRandomIndex(array) {
-  return Math.floor(Math.random() * array.length);
-};
 
 /*Data*/
 var sides = [
