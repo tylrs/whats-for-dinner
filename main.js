@@ -38,6 +38,7 @@ function generateRandomDish() {
     if (oldSides.includes(newDish)) {
       generateRandomDish();
     } else {
+      seenBeforeMessage.classList.add('hidden');
       currentDish = newDish;
       oldSides.push(newDish);
     }
@@ -53,6 +54,7 @@ function generateRandomDish() {
     if (oldMainDishes.includes(newDish)) {
       generateRandomDish();
     } else {
+      seenBeforeMessage.classList.add('hidden');
       currentDish = newDish;
       oldMainDishes.push(newDish);
     }
@@ -68,6 +70,7 @@ function generateRandomDish() {
     if (oldDesserts.includes(newDish)) {
       generateRandomDish();
     } else {
+      seenBeforeMessage.classList.add('hidden');
       currentDish = newDish;
       oldDesserts.push(newDish);
     }
