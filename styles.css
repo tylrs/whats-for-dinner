@@ -114,11 +114,14 @@ sup {
 
 #seen-before {
   text-align: center;
+  font-size: 200%;
+  color: red;
 }
 
 #dish-name {
   font-size: 200%;
   font-weight: bolder;
+  text-align: center;
 }
 
 #dish-name-section > p {
