@@ -16,6 +16,8 @@ body {
   background: url('./assets/burger-friends.jpg');
   background-size: cover;
   margin: 0;
+  display: grid;
+  grid-template-rows: 9% 91%;
 }
 
 nav {
@@ -23,6 +25,7 @@ nav {
   display: flex;
   justify-content: space-between;
   padding: 5px;
+  grid-row: 1;
 }
 
 .controls {
@@ -37,12 +40,17 @@ nav {
 }
 
 main {
-  display: flex;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: 8.4% 35.4% 12.46% 35.4% 8.4%;
+  grid-template-rows: 7% 56% 37%;
+  /* grid-template-columns: 20% 20% 20% 20% 20%; */
+/* display: flex;
   flex-direction: row;
   justify-content: space-around;
-  flex-wrap: wrap;
-  margin: 30px;
-  height: 400px;
+  flex-wrap: wrap; */
+  /* margin: 30px; */
+  height: 670px;
 }
 
 form {
@@ -51,8 +59,17 @@ form {
   justify-content: space-around;
   align-items: flex-start;
   padding: 50px;
+  grid-column: 2;
+  grid-row: 2
 }
 
+#results {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-column: 4;
+  grid-row: 2
+}
 /* form {
   display: inline-flex;
   flex-direction: column;
@@ -66,13 +83,7 @@ form {
 
 #results, form {
   background-color: rgba(225, 225, 225, .9);
-  width: 500px;
-}
-
-#results {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* width: 500px; */
 }
 
 img {
