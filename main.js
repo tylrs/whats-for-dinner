@@ -13,11 +13,11 @@ form.addEventListener('submit', showRandomDish);
 
 
 /*Global Variables*/
-var currentDish;
-var oldSides = [];
-var oldMainDishes = [];
-var oldDesserts = [];
 var newDish;
+var currentDish;
+var sidesShown = [];
+var mainDishesShown = [];
+var dessertsShown = [];
 
 
 /*Add event handlers*/
@@ -30,64 +30,26 @@ function showRandomDish() {
   dishName.innerText = `${currentDish}!`;
 }
 
+
+
 function generateRandomDish() {
-  var mealType = chooseArray();
-  if (mealType === "sides") {
-    sidesGenerator();
-  } else if (mealType === "mainDishes") {
-    mainDishesGenerator();
-  } else if (mealType === "desserts") {
-    dessertsGenerator();
-  }
-}
-
-function sidesGenerator() {
-  if (sides.length > 0) {
-    newDish = sides.splice([getRandomIndex(sides)], 1);
+  var recipeTypeName = chooseArray();
+  var recipeType = window[recipeTypeName];
+  var recipeTypeShown = window[`${recipeTypeName}Shown`];
+  if (recipeType.length > 0) {
+    newDish = recipeType.splice([getRandomIndex(recipeType)], 1);
     seenBeforeMessage.classList.add('hidden');
     currentDish = newDish;
-    oldSides.push(newDish);
-  } else if (!sides.length) {
+    recipeTypeShown.push(newDish);
+  } else if (!recipeType.length) {
     seenBeforeMessage.classList.remove('hidden');
-    var originalLength = oldSides.length;
+    var originalLength = recipeTypeShown.length;
     for (var i = 0; i < originalLength; i ++) {
-      var resetDish = oldSides.pop();
-      sides.push(resetDish);
-    };
-  };
-};
-
-function mainDishesGenerator() {
-  if (mainDishes.length > 0) {
-    newDish = mainDishes.splice([getRandomIndex(mainDishes)], 1);
-    seenBeforeMessage.classList.add('hidden');
-    currentDish = newDish;
-    oldMainDishes.push(newDish);
-  } else if (!mainDishes.length) {
-    seenBeforeMessage.classList.remove('hidden');
-    var originalLength = oldMainDishes.length;
-    for (var i = 0; i < originalLength; i ++) {
-      var resetDish = oldMainDishes.pop();
-      mainDishes.push(resetDish);
-    };
-  };
-};
-
-function dessertsGenerator() {
-  if (desserts.length > 0) {
-    newDish = desserts.splice([getRandomIndex(desserts)], 1);
-    seenBeforeMessage.classList.add('hidden');
-    currentDish = newDish;
-    oldDesserts.push(newDish);
-  } else if (!desserts.length) {
-    seenBeforeMessage.classList.remove('hidden');
-    var originalLength = oldDesserts.length;
-    for (var i = 0; i < originalLength; i ++) {
-      var resetDish = oldDesserts.pop();
-      desserts.push(resetDish);
+      recipeType.push(recipeTypeShown.pop());
     };
   };
 }
+
 
 function chooseArray() {
   for (var i = 0; i < radioButton.length; i++) {
