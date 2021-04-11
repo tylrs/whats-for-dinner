@@ -19,4 +19,4 @@ Upon launching my page, you will see a form with 3 options of meal types to sele
 
 ## Deploy Link
 
-Click [here](https://tylrs.github.io/whats-for-dinner/) to deploy our page!
+Click [here](https://tylrs.github.io/whats-for-dinner/) to deploy my page!
