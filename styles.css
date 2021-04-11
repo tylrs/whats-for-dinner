@@ -32,17 +32,6 @@ nav {
   grid-row: 1;
 }
 
-.controls {
-  display: flex;
-  align-items: center;
-}
-
-.add-recipe {
-  border: none;
-  border-radius: 3px / 5px;
-  padding: 7px;
-}
-
 main {
   grid-row: 2;
   display: grid;
@@ -117,7 +106,7 @@ sup {
   text-align: center;
 }
 
-h3 {
+h2 {
   margin: 0;
 }
 
